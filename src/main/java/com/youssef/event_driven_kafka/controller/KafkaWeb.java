@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class KafkaWeb {
 
     @Autowired
-    private KafkaTemplate<Object, String> kafkaTemplate;
+    private KafkaTemplate<String,Employee> kafkaTemplate;
     private String topic="testTopic";
     @GetMapping("/publish/{name}")
     public String publishMessage(@PathVariable String name) {
         Employee employee = new Employee(name, 45000.0);
-        // Convert the Employee object to JSON or a string representation
-        String employeeJson = String.format("{\"name\":\"%s\",\"salary\":%.2f}", employee.getName(), employee.getSalary());
-        kafkaTemplate.send(topic, employeeJson);
+        kafkaTemplate.send(topic, employee);
         return "Message Published";
     }
 

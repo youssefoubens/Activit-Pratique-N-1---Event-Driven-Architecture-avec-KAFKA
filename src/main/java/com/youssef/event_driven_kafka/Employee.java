@@ -14,6 +14,4 @@ import lombok.ToString;
 public class  Employee {
     String name;
     double salary;
-
-
 }
