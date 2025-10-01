@@ -22,10 +22,10 @@ public class KafkaControllerusingspringcloud {
                              @PathVariable String name){
         PageEvent pageEvent=new
 
-                PageEvent(name+name,Math.random()>0.5?"U1":"U2",new Date(),new
+                PageEvent(topic+"+"+name,Math.random()>0.5?"U1":"U2",new Date(),new
                 Random().nextInt(9000));
 
-        streamBridge.send(topic,pageEvent);
+        streamBridge.send("pageEventProducer-out-0",pageEvent);
         return pageEvent;
     }
 
